@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: megatronik-server
+    runtime: python
+    rootDir: server
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -w 1 --threads 8 -b 0.0.0.0:$PORT server:app
+    healthCheckPath: /health
+    plan: free
